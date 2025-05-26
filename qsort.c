@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:11:55 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/26 18:19:37 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/26 18:23:55 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	send_parts(t_list **lst_1, t_list **lst_2, t_list **res, t_qs_prs pars)
 	int	index;
 	int	pos;
 
-	//printf("sending parts len %d, at %d\n", pars.len, pars.mode);
+	//printf("sending parts len %d, at %d\n", pars.len, pars.mode);huihuihui
 	index = 0;
 	while (index < pars.len)
 	{
