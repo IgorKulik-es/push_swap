@@ -10,3 +10,27 @@ ARG="76 28 68 18 59 46 7 32 10 33 72 5 14 26 9 44 87 19 1 100 2 73 94 43 78 90 1
 RESULT=$(./push_swap $ARG | ./checker_linux $ARG)
 MOVES=$(./push_swap $ARG | wc -l)
 echo "Test 2 $RESULT at $MOVES moves"
+
+i=0
+j=0
+error=0
+while [ "$i" -le 1000 ]
+do
+ARG=$(seq 1 100 | sort -R | tr '\n' ' ')
+RESULT=$(./push_swap $ARG | ./checker_linux $ARG)
+MOVES=$(./push_swap $ARG | wc -l)
+if [ "$MOVES" -ge 700 ]
+then
+j=$((j + 1))
+echo $ARG
+fi
+if [ "$RESULT" != "OK" ]
+then
+error=$((error + 1))
+echo $ARG
+fi
+i=$((i + 1))
+done
+
+echo "Overshot at $j tests out of 1000"
+echo "Errors at $error tests out of 1000"

@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:45 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/22 18:44:52 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/26 21:06:07 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ void		stupid_sort(int	*arr, int size);
 int			qsort_a(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs params);
 void		sort_pair(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
 int			ssort(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs *params);
+void		rubicks_cube_trick(t_list **lst, t_list **res, t_qs_prs *pars);
+
+void		sort_3_a_d(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
+void		sort_3_a_u(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
+void		sort_3_b_d(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
+void		sort_3_b_u(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
+
 
 
 int			check_if_sorted(t_list *lst, int *arr, t_qs_prs *params);

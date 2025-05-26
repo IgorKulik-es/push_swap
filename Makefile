@@ -2,7 +2,7 @@ NAME = push_swap
 LIBRARY = libpush_swap.a
 
 SRCS = push_swap_main.c lst_basics.c parsing_checks.c basic_utils.c data_cleanup.c manipulations.c \
-insertion_sort.c printer.c qsort.c small_sorts.c ft_split.c
+insertion_sort.c printer.c qsort.c small_sorts.c ft_split.c sort_three.c
 
 HEADER = push_swap.h
 

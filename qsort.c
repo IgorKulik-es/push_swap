@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:11:55 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/26 18:23:55 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/26 21:11:23 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ int	qsort_a(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs params)
 		return (send_sortd(lst_a, lst_b, res, &params));
 	else
 	{
-		if (params.len <= 2)
+		if (params.len <= 3)
 			return (ssort(lst_a, lst_b, res, &params));
 		send_parts(lst_a, lst_b, res, params);
 	}
 	//printf("after split\n");
 	//print_list(*lst_a);
 	//print_list(*lst_b);
-	params.len = params.pt_size[0];
+	params.len = params.pt_size[2];
 	params.mode = (params.mode ^ (UP | DOWN));
 	qsort_a(lst_a, lst_b, res, params);
 	params.len = params.pt_size[1];
-	params.mode = (B | UP);
-	qsort_b(lst_a, lst_b, res, params);
-	params.len = params.pt_size[2];
 	params.mode = (B | DOWN);
+	qsort_b(lst_a, lst_b, res, params);
+	params.len = params.pt_size[0];
+	params.mode = (B | UP);
 	qsort_b(lst_a, lst_b, res, params);
 	return (len);
 }
@@ -66,20 +66,20 @@ int	qsort_b(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs params)
 		return (send_sortd(lst_a, lst_b, res, &params));
 	else
 	{
-		if (params.len <= 2 || ((params.len == 3) && (params.mode == A + DOWN)))
+		if (params.len <= 3 /*||  ((params.len == 3) && (params.mode == A + DOWN)) */)
 			return (ssort(lst_a, lst_b, res, &params));
 		send_parts(lst_b, lst_a, res, params);
 	}
 	//printf("after split\n");
 	//print_list(*lst_a);
 	//print_list(*lst_b);
-	params.len = params.pt_size[0];
-	params.mode = (A | UP);
-	qsort_a(lst_a, lst_b, res, params);
-	params.len = params.pt_size[1];
+	params.len = params.pt_size[2];
 	params.mode = (A | DOWN);
 	qsort_a(lst_a, lst_b, res, params);
-	params.len = params.pt_size[2];
+	params.len = params.pt_size[1];
+	params.mode = (A | UP);
+	qsort_a(lst_a, lst_b, res, params);
+	params.len = params.pt_size[0];
 	params.mode = (mode_old ^ (UP | DOWN));
 	qsort_b(lst_a, lst_b, res, params);
 	return (len);
@@ -104,8 +104,8 @@ int	send_sortd(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs *pars)
 		}
 		index++;
 	}
-	if (pars->mode != (A | UP))
-		rotate(lst_a, res, RA, pars->len);
+	if (pars->mode == (A | UP))
+		rotate(lst_a, res, RRA, -pars->len);
 	return (pars->len);
 }
 
@@ -114,7 +114,7 @@ void	send_parts(t_list **lst_1, t_list **lst_2, t_list **res, t_qs_prs pars)
 	int	index;
 	int	pos;
 
-	//printf("sending parts len %d, at %d\n", pars.len, pars.mode);huihuihui
+	//printf("sending parts len %d, at %d\n", pars.len, pars.mode);
 	index = 0;
 	while (index < pars.len)
 	{
@@ -123,16 +123,16 @@ void	send_parts(t_list **lst_1, t_list **lst_2, t_list **res, t_qs_prs pars)
 			rotate(lst_1, res, pars.mode & (A | B), -1);
 		}
 		pos = compare_pivots((*lst_1)->true_pos, &pars);
-		if ((pars.mode & A) && pos > SMALL)
+		if ((pars.mode & A) && pos <= MED)
 			move_push(lst_1, lst_2, res, PB);
-		if ((pars.mode & A) && pos == MED)
+		if ((pars.mode & A) && pos == SMALL)
 			rotate(lst_2, res, RB, 1);
-		if ((pars.mode & B) && pos < BIG)
+		if ((pars.mode & B) && pos > SMALL)
 			move_push(lst_1, lst_2, res, PA);
-		if ((pars.mode & B) && pos == SMALL)
+		if ((pars.mode & B) && pos == MED)
 			rotate(lst_2, res, RA, 1);
-		if (((pars.mode == (A + DOWN)) && pos == SMALL)
-			|| ((pars.mode == (B + DOWN)) && pos == BIG))
+		if (((pars.mode == (A + DOWN)) && pos == BIG)
+			|| ((pars.mode == (B + DOWN)) && pos == SMALL))
 			rotate(lst_1, res, pars.mode & (A | B), 1);
 		index++;
 	}
