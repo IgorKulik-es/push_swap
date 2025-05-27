@@ -6,13 +6,13 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:22:16 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/22 18:28:52 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/27 19:40:11 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_one_command(int type)
+static void	print_one_command(int type)
 {
 	if (type == SA)
 		write(1, "sa\n", 3);
@@ -67,6 +67,3 @@ int	print_result(t_list *res)
 	}
 	return (counter);
 }
-
-
-

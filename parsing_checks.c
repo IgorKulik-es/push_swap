@@ -6,11 +6,13 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 19:26:21 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/22 16:15:50 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/27 19:39:56 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+long long	ft_atol(char *nptr);
 
 int	check_element(char *arg)
 {
@@ -60,7 +62,7 @@ long long	ft_atol(char *nptr)
 	return (result);
 }
 
-void	stupid_sort(int	*arr, int size)
+void	insertion_sort(int	*arr, int size)
 {
 	int	i;
 	int	j;
@@ -90,7 +92,6 @@ int	check_noncoincidence(int *arr, int size)
 
 	if (size == 0)
 		return (0);
-
 	index = 0;
 	while (index < size - 1)
 	{
@@ -121,7 +122,7 @@ int	*check_arguments(int words, char **argv, t_list **lst)
 		arr[index] = (*lst)->prev->val;
 		index++;
 	}
-	stupid_sort(arr, words);
+	insertion_sort(arr, words);
 	if (check_noncoincidence(arr, words) == 0)
 	{
 		free(arr);
