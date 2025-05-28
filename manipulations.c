@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:54:35 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/27 18:02:54 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/28 18:15:22 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	swap_top(t_list **lst, t_list **res, int type)
 	t_list	*top;
 	t_list	*bot;
 
-	if (*lst == NULL)
-		return ;
-	if ((*lst)->next == *lst)
+	if (lst == NULL || *lst == NULL || (*lst)->next == *lst)
 		return ;
 	top = *lst;
 	bot = (*lst)->next;
@@ -45,6 +43,8 @@ void	move_push(t_list **lst_1, t_list **lst_2, t_list **res, int type)
 	int	temp_shift;
 	int	temp_true_pos;
 
+	if (lst_1 == NULL || *lst_1 == NULL)
+		return ;
 	if (type != 0)
 	{
 		if (*lst_1 == NULL)
@@ -64,6 +64,8 @@ void	rotate(t_list **lst, t_list **res, int type, int reps)
 {
 	int	counter;
 
+	if (lst == NULL || *lst == NULL)
+		return ;
 	counter = reps;
 	while (counter > 0)
 	{

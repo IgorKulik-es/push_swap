@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:13:46 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/21 16:04:43 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/28 15:58:19 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (length);
 }
 
-void	clean_split(char **arr, int words)
+t_list	*clean_split(char **arr, int words)
 {
+	if (arr == NULL || *arr == NULL)
+		return (NULL);
 	words--;
 	while (words >= 0)
 	{
@@ -75,4 +77,5 @@ void	clean_split(char **arr, int words)
 		words--;
 	}
 	free(arr);
+	return (NULL);
 }

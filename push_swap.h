@@ -6,7 +6,7 @@
 /*   By: ikulik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:45 by ikulik            #+#    #+#             */
-/*   Updated: 2025/05/27 20:22:41 by ikulik           ###   ########.fr       */
+/*   Updated: 2025/05/28 16:57:41 by ikulik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_split(char const *s, char c, char ***result);
-void	clean_split(char **arr, int words);
+t_list	*clean_split(char **arr, int words);
 t_list	*lst_push_back(t_list **lst, int val, int shift);
 t_list	*lst_push_front(t_list **lst, int n);
 int		lst_pop(t_list **lst);
@@ -77,10 +77,13 @@ void	insertion_sort(int	*arr, int size);
 int		qsort_a(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs params);
 int		find_pivots(t_list *lst, t_qs_prs *params);
 int		ssort(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs *params);
+void	sort_small(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
+int		determine_order(t_list *lst, int mode);
 void	sort_3_a_d(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
 void	sort_3_a_u(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
 void	sort_3_b_d(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
 void	sort_3_b_u(t_list **lst_a, t_list **lst_b, t_list **res, t_qs_prs pars);
 int		find_pivots(t_list *lst, t_qs_prs *params);
+t_list	*parse_arguments(int argc, char **argv, t_qs_prs *params);
 
 #endif
